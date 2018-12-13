@@ -1,6 +1,14 @@
 const webpack = require('webpack');
+const path = require('path');
 const config = {
-    entry:  __dirname + '/js/index.js',
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      port: 8000
+    },
+    entry:  {
+      index: ['babel-polyfill', __dirname + '/js/index.js']
+    },
     output: {
         path: __dirname + '/dist',
         filename: 'bundle.js',

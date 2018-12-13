@@ -1,6 +1,6 @@
 # server.py
 import json
-from flask import Flask, render_template, Response, request, jsonify, request
+from flask import Flask, render_template, Response, request, jsonify, request, make_response
 from flask_restful import Resource, Api
 from marshmallow import Schema, fields, ValidationError
 from db import select_query
@@ -22,14 +22,11 @@ def hello():
     return "Hello, world!"
 
 # get todos rout
-@app.route("/api/todos")
+@app.route("/api/todos", methods=["GET"])
 def getTodos():
-  return_str = ""
   results = select_query("select * from todo")
-  for result in results:
-    (id, name, completed) = result
-    return_str += (str(id) + " " + name + " " + str(completed) + " ")
-  return return_str
+  print("results", results)
+  return make_response(results), 200
 
 if __name__ == "__main__":
     app.run()

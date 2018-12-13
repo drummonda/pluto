@@ -1,32 +1,46 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { Button } from 'semantic-ui-react';
+import CreateForm from './createForm'
 
 export default class App extends Component {
 
   constructor() {
-    super();
+    super()
     this.state = { todos: [] }
-    this.onClick = this.onClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
-  onClick() {
-    // const { response: { data } } = await axios.get('/todos');
-    // console.log("the data", data);
+  async componentDidMount() {
+    const { data } = await axios.get('/api/todos')
+    this.setState({ todos: data })
+  }
+
+  async handleDelete(id) {
+    // const { data } = await axios.delete(`/api/todos/${id}`)
     // this.setState({ todos: data })
+    window.alert(`deleted!! id= ${id}`)
   }
 
   render () {
     return (
       <div id="main">
-        <h1>Running Python and React this is lit as fuckk</h1>
-        <Button
-          onClick={this.onClick}>
-          Click me plz
-        </Button>
-        <ul>
-          { this.state.todos.map(todo => <li>{todo}</li>) }
-        </ul>
+        <h1>My Fuckin' Todos:</h1>
+        <div id="todos">
+          {
+            this.state.todos.map(todo => (
+              <div key={todo.id}>
+                <h3>{todo.name}</h3>
+                <Button
+                  onClick={() => this.handleDelete(todo.id)}
+                >
+                  Delete!
+                </Button>
+              </div>
+            ))
+          }
+        </div>
+        <CreateForm />
       </div>
     );
   }

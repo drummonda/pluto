@@ -1,3 +1,22 @@
+body {
+  background-color: #cc8800;
+  background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #main {
-  margin: 3%;
+  margin: 12%;
+  justify-content: center;
+}
+
+#content {
+  background-image: url(https://images.vexels.com/media/users/3/146628/isolated/preview/0f613df3b068c62c8ab2ef9cc8a4c352-blue-post-it-note-by-vexels.png);
+  height: 70%;
+  width: 60%;
+}
+
+#todos {
+  margin-left: 10%;
 }

@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
 from sqlalchemy import inspect
 from sqlalchemy.sql import text
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost:5432/flask_todo'
@@ -19,11 +20,8 @@ class Todo(db.Model):
 def select_query(query):
     engine = create_engine('postgres://localhost:5432/flask_todo')
     with engine.connect() as con:
-        rs = con.execute(query)
-        return_arr = []
-        for row in rs:
-            return_arr.append(row)
-        return return_arr
+        res = con.execute(query)
+        return json.dumps([dict(r) for r in res])
 
 def insert_query(data, query):
     engine = create_engine('postgres://localhost:5432/flask_todo')
