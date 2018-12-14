@@ -19,18 +19,34 @@ class Todo(db.Model):
     completed = db.Column(db.Boolean, default=False)
 
 
-def select_query(query):
+def select_query():
     with engine.connect() as con:
+        query = "select * from todo"
         res = con.execute(query)
         return json.dumps([dict(r) for r in res])
 
+def select_one_query(todo_id):
+    with engine.connect() as con:
+        query = "select * from todo where id = " + str(todo_id)
+        res = con.execute(query)
+        return json.dumps(dict(res))
+
 def insert_query(name):
     with engine.connect() as con:
-        con.execute("insert into todo (id, name, completed)"
-                   + "values ((select max(id) from todo) + 1, " + name + ",false)")
+        query = ("insert into todo (id, name, completed) " +
+                    "values (" +
+                        "(case when (select max(id) from todo) is not null " +
+                        "       then (select max(id) from todo) + 1 " +
+                         "else 1 end)," +
+                        "'" + name + "'" + ", false)")
+        con.execute(query)
 
-def delete_query(query):
+def delete_query(todo_id):
     with engine.connect() as con:
-        res = con.execute(query)
-        return True
+        query = "delete from todo where id = " + str(todo_id)
+        con.execute(query)
 
+def update_query(todo_id, completed):
+    with engine.connect() as con:
+        query = "update todo set completed = " + completed + "where id = " + str(todo_id)
+        con.execute(query)

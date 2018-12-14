@@ -21,7 +21,6 @@ export default class CreateForm extends Component {
     const { input } = this.state
     console.log("input", input)
     const { data } = await axios.post('/api/todos', { name: input })
-    window.alert(`created todo = ${input}`)
     this.setState({
       input: ""
     })

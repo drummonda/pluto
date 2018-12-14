@@ -18,9 +18,8 @@ export default class App extends Component {
   }
 
   async handleDelete(id) {
-    // const { data } = await axios.delete(`/api/todos/${id}`)
-    // this.setState({ todos: data })
-    window.alert(`deleted!! id= ${id}`)
+    const { data } = await axios.delete(`/api/todos/${id}`)
+    this.setState({ todos: data })
   }
 
   updateTodos(todos) {
