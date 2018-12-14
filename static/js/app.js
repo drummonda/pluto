@@ -9,6 +9,7 @@ export default class App extends Component {
     super()
     this.state = { todos: [] }
     this.handleDelete = this.handleDelete.bind(this)
+    this.updateTodos = this.updateTodos.bind(this)
   }
 
   async componentDidMount() {
@@ -20,6 +21,10 @@ export default class App extends Component {
     // const { data } = await axios.delete(`/api/todos/${id}`)
     // this.setState({ todos: data })
     window.alert(`deleted!! id= ${id}`)
+  }
+
+  updateTodos(todos) {
+    this.setState({ todos })
   }
 
   render () {
@@ -40,7 +45,7 @@ export default class App extends Component {
             ))
           }
         </div>
-        <CreateForm />
+        <CreateForm updateTodos={this.updateTodos} />
       </div>
     );
   }

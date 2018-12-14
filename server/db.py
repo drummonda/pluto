@@ -7,9 +7,11 @@ from sqlalchemy import inspect
 from sqlalchemy.sql import text
 import json
 
+db_url = 'postgres://localhost:5432/flask_todo'
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost:5432/flask_todo'
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 db = SQLAlchemy(app)
+engine = create_engine(db_url)
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,13 +20,17 @@ class Todo(db.Model):
 
 
 def select_query(query):
-    engine = create_engine('postgres://localhost:5432/flask_todo')
     with engine.connect() as con:
         res = con.execute(query)
         return json.dumps([dict(r) for r in res])
 
-def insert_query(data, query):
-    engine = create_engine('postgres://localhost:5432/flask_todo')
+def insert_query(name):
     with engine.connect() as con:
-        for row in data:
-            con.execute(query)
+        con.execute("insert into todo (id, name, completed)"
+                   + "values ((select max(id) from todo) + 1, " + name + ",false)")
+
+def delete_query(query):
+    with engine.connect() as con:
+        res = con.execute(query)
+        return True
+

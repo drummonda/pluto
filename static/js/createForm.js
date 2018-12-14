@@ -19,11 +19,13 @@ export default class CreateForm extends Component {
   async handleSubmit(evt) {
     evt.preventDefault()
     const { input } = this.state
-    // await axios.post('/api/todos', { name: input })
+    console.log("input", input)
+    const { data } = await axios.post('/api/todos', { name: input })
     window.alert(`created todo = ${input}`)
     this.setState({
       input: ""
     })
+    this.props.updateTodos(data)
   }
 
   render() {
