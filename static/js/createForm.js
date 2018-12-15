@@ -30,7 +30,7 @@ export default class CreateForm extends Component {
     return (
       <Form onSubmit={this.handleSubmit.bind(this)} className="todo-form">
         <Form.Field>
-          <label>Add a to-do</label>
+          <label className="form-label">Add a to-do</label>
           <input
             placeholder="do laundry"
             value={this.state.input}

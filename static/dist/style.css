@@ -14,14 +14,14 @@ img {
 }
 
 h3 {
-  margin-left: 2%;
+  margin: 0% 0% 0% 3%;
   display: inline;
   white-space:nowrap;
-  margin-right: 3%;
 }
 
 .todo {
   margin: 5%;
+  padding: 2%;
   width: 100%;
   flex-direction: row;
   justify-content: space-around;
@@ -47,6 +47,10 @@ h3 {
   left: 15%;
 }
 
+.form-label {
+  font-size: 2em;
+}
+
 .completed {
   text-decoration: line-through;
   text-decoration-line: bold;
@@ -56,6 +60,7 @@ h3 {
 
 .images {
   align-self: flex-end;
+  display: inline;
 }
 
 #main {
