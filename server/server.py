@@ -43,10 +43,12 @@ def deleteTodos(todo_id):
   results = select_query()
   return make_response(results), 201
 
-@app.route("/api/todos/<int:todo_id>", methods=["PUT"])
+@app.route("/api/todos/<int:todo_id>/complete", methods=["PUT"])
 def updateTodos(todo_id):
   todo_to_update = select_one_query(todo_id)
-  update_query(todo_id, todo_to_update["completed"])
+  print("todo_to_update", todo_to_update)
+  print("completed", not todo_to_update["completed"])
+  update_query(todo_id, not todo_to_update["completed"])
   results = select_query()
   return make_response(results), 201
 

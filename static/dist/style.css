@@ -6,6 +6,37 @@ body {
   justify-content: center;
 }
 
+img {
+  display: inline;
+  height: 6%;
+  width: 6%;
+  margin: 0% 2% 0% 2%;
+}
+
+h3 {
+  display: inline;
+  white-space:nowrap;
+  margin-right: 3%;
+}
+
+.todo {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.todo-form {
+  width: 50%;
+  padding: 0%;
+}
+
+.completed {
+  text-decoration: line-through;
+  text-decoration-line: bold;
+  text-decoration-color: green;
+  color: green;
+}
+
 #main {
   margin: 12%;
   justify-content: center;
@@ -14,9 +45,9 @@ body {
 #content {
   background-image: url(https://images.vexels.com/media/users/3/146628/isolated/preview/0f613df3b068c62c8ab2ef9cc8a4c352-blue-post-it-note-by-vexels.png);
   height: 70%;
-  width: 60%;
+  width: 40%;
 }
 
 #todos {
-  margin-left: 10%;
+  margin-left: 15%;
 }

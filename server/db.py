@@ -29,7 +29,7 @@ def select_one_query(todo_id):
     with engine.connect() as con:
         query = "select * from todo where id = " + str(todo_id)
         res = con.execute(query)
-        return json.dumps(dict(res))
+        return json.dumps(dict(r) for r in res)
 
 def insert_query(name):
     with engine.connect() as con:

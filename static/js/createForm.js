@@ -29,7 +29,7 @@ export default class CreateForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit.bind(this)}>
+      <Form onSubmit={this.handleSubmit.bind(this)} className="todo-form">
         <Form.Field>
           <label>Todo Name</label>
           <input
