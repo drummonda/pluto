@@ -23,18 +23,20 @@ export default class App extends Component {
 
   render () {
     return (
-      <div id="main">
-        <h1>My Fuckin' Todos:</h1>
-        <div id="todos">
-          {
-            this.state.todos.map(todo => (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                updateTodos={this.updateTodos}
-              />
-            ))
-          }
+      <div id="container">
+        <div id="main">
+          <h1>My To-do's:</h1>
+          <div id="todos">
+            {
+              this.state.todos.map(todo => (
+                <Todo
+                  key={todo.id}
+                  todo={todo}
+                  updateTodos={this.updateTodos}
+                />
+              ))
+            }
+          </div>
         </div>
         <CreateForm updateTodos={this.updateTodos} />
       </div>

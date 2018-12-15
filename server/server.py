@@ -16,16 +16,9 @@ api = Api(app)
 def index():
     return render_template("index.html")
 
-# hello route
-@app.route("/hello")
-def hello():
-    return "Hello, world!"
-
-# get todos rout
 @app.route("/api/todos", methods=["GET"])
 def getTodos():
   results = select_query()
-  print("results", results)
   return make_response(results), 200
 
 @app.route("/api/todos", methods=["POST"])
@@ -45,10 +38,8 @@ def deleteTodos(todo_id):
 
 @app.route("/api/todos/<int:todo_id>/complete", methods=["PUT"])
 def updateTodos(todo_id):
-  todo_to_update = select_one_query(todo_id)
-  print("todo_to_update", todo_to_update)
-  print("completed", not todo_to_update["completed"])
-  update_query(todo_id, not todo_to_update["completed"])
+  (_id, name, completed) = select_one_query(todo_id)
+  update_query(todo_id, not completed)
   results = select_query()
   return make_response(results), 201
 

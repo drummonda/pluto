@@ -23,13 +23,15 @@ def select_query():
     with engine.connect() as con:
         query = "select * from todo"
         res = con.execute(query)
-        return json.dumps([dict(r) for r in res])
+        results = [dict(r) for r in res]
+        sorted_results = sorted(results, key=lambda k: k['id'])
+        return json.dumps(sorted_results)
 
 def select_one_query(todo_id):
     with engine.connect() as con:
         query = "select * from todo where id = " + str(todo_id)
         res = con.execute(query)
-        return json.dumps(dict(r) for r in res)
+        return res.fetchone()
 
 def insert_query(name):
     with engine.connect() as con:
@@ -48,5 +50,5 @@ def delete_query(todo_id):
 
 def update_query(todo_id, completed):
     with engine.connect() as con:
-        query = "update todo set completed = " + completed + "where id = " + str(todo_id)
+        query = "update todo set completed = " + str(completed) + " where id = " + str(todo_id)
         con.execute(query)

@@ -14,20 +14,37 @@ img {
 }
 
 h3 {
+  margin-left: 2%;
   display: inline;
   white-space:nowrap;
   margin-right: 3%;
 }
 
 .todo {
+  margin: 5%;
   width: 100%;
   flex-direction: row;
   justify-content: space-around;
+  border-style: solid;
+  border-color: black;
+  border-radius: 15%;
+}
+
+.completed-todo {
+  margin: 5%;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  border-style: dashed;
+  border-color: green;
+  border-radius: 15%;
 }
 
 .todo-form {
   width: 50%;
-  padding: 0%;
+  position: absolute;
+  top: 15%;
+  left: 15%;
 }
 
 .completed {
@@ -37,8 +54,15 @@ h3 {
   color: green;
 }
 
+.images {
+  align-self: flex-end;
+}
+
 #main {
-  margin: 12%;
+  margin: 8% 0% 0% 6%;
+  position: fixed;
+  height: 60%;
+  width: 30%;
   justify-content: center;
 }
 

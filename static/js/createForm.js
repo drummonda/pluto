@@ -19,7 +19,6 @@ export default class CreateForm extends Component {
   async handleSubmit(evt) {
     evt.preventDefault()
     const { input } = this.state
-    console.log("input", input)
     const { data } = await axios.post('/api/todos', { name: input })
     this.setState({
       input: ""
@@ -31,15 +30,12 @@ export default class CreateForm extends Component {
     return (
       <Form onSubmit={this.handleSubmit.bind(this)} className="todo-form">
         <Form.Field>
-          <label>Todo Name</label>
+          <label>Add a to-do</label>
           <input
-            placeholder="Make a todo"
+            placeholder="do laundry"
             value={this.state.input}
             onChange={this.handleChange.bind(this)}
           />
-          <Button type="submit">
-            Create!!!
-          </Button>
         </Form.Field>
       </Form>
     )

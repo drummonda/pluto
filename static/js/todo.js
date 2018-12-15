@@ -28,18 +28,20 @@ export default class Todo extends Component {
     const { todo } = this.props
     const { completed } = this.state
     return (
-        <div className="todo">
+        <div className={completed ? "completed-todo" : "todo"}>
           <h3 className={completed ? 'completed' : ''} >
             {todo.name}
           </h3>
-          <img
-            src="../dist/delete.png"
-            onClick={() => this.handleDelete(todo.id)}
-          />
-          <img
-            src="../dist/checked.png"
-            onClick={() => this.toggleCompleted(todo.id)}
-          />
+          <div className="images">
+            <img
+              src={completed ? "../dist/completed_delete.png" : "../dist/delete.png"}
+              onClick={() => this.handleDelete(todo.id)}
+            />
+            <img
+              src={completed ? "../dist/completed_check.png" : "../dist/checked.png"}
+              onClick={() => this.toggleCompleted(todo.id)}
+            />
+          </div>
         </div>
     )
   }
